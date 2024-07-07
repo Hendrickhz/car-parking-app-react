@@ -40,6 +40,7 @@ function App() {
     return (
       <>
         <NamedLink name="profile.edit">Profile</NamedLink>
+        <NamedLink name="profile.change-password">Change Password</NamedLink>
 
         <button onClick={logout} type="button" className=" text-blue-600">
           Logout
@@ -59,10 +60,9 @@ function App() {
                 </div>
                 myParking
               </h2>
-           {isLoggedIn ? leftAuthLinks(): leftGuestLinks()}
+              {isLoggedIn ? leftAuthLinks() : leftGuestLinks()}
             </div>
-           {isLoggedIn ? rightAuthLinks(): rightGuestLinks()}
-          
+            {isLoggedIn ? rightAuthLinks() : rightGuestLinks()}
           </nav>
         </div>
       </header>

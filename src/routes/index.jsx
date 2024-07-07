@@ -1,10 +1,11 @@
 const routeNames = {
-  'home': "/",
-  'register': "/register",
-  'login': "/login",
- 'vehicles.index': "/vehicles",
- "parkings.active":'/parkings/active',
- "profile.edit":'/profile/edit'
+  home: "/",
+  register: "/register",
+  login: "/login",
+  "vehicles.index": "/vehicles",
+  "parkings.active": "/parkings/active",
+  "profile.edit": "/profile/edit",
+  "profile.change-password": "/profile/change-password",
 };
 function route(name, params = {}) {
   let url = routeNames[name];
