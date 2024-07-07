@@ -10,6 +10,7 @@ import VehiclesList from "@/views/vehicles/VehiclesList";
 import axios from "axios";
 import Login from "@/views/auth/Login";
 import ActiveParkings from "./views/parkings/ActiveParkings";
+import EditProfile from "./views/profile/EditProfile";
 window.axios = axios;
  
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path={route('register')} element={<Register />} />
           <Route path={route('login')} element={<Login />} />
           <Route path={route('vehicles.index')} element={<VehiclesList />} />
+          <Route path={route('profile.edit')} element={<EditProfile />} />
           <Route path={route('parkings.active')} element={<ActiveParkings />} />
         </Route>
       </Routes>
