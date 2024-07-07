@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NamedLink from "./components/NamedLink";
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
                 myParking
               </h2>
               <NamedLink name="home">Home</NamedLink>
+
+              <NamedLink name="vehicles.index">Vehicles</NamedLink>
             </div>
             <div className="flex gap-4 items-center">
               <NamedLink name="register">Register</NamedLink>
