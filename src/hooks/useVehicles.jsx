@@ -17,5 +17,5 @@ export function useVehicles() {
       .then((response) => setVehicles(response.data.data))
       .catch(() => {});
   }
-  return { vehicles };
+  return { vehicles, getVehicles };
 }

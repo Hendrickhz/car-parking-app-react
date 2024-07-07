@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { route } from "../../routes";
 import { useVehicles } from "../../hooks/useVehicles";
+import { useVehicle } from "../../hooks/useVehicle";
 
 const VehiclesList = () => {
-  const { vehicles } = useVehicles();
+  const { vehicles, getVehicles } = useVehicles();
+  const { destroyVehicle } = useVehicle();
   return (
     <div className="flex flex-col mx-auto md:w-96 w-full">
       <h1 className="heading">My Vehicles</h1>
@@ -34,15 +36,25 @@ const VehiclesList = () => {
                       </div>
                     </div>
                     <div className="flex gap-1">
-                      <button
-                        type="button"
+                      <Link
+                        to={route("vehicles.edit", { id: vehicle.id })}
                         className="btn btn-secondary text-sm"
                       >
                         Edit
-                      </button>
+                      </Link>
                       <button
                         type="button"
                         className="btn text-white bg-red-600 hover:bg-red-500 text-sm"
+                        onClick={async () => {
+                          if (
+                            window.confirm(
+                              "Are You sure to delete the vehicle?"
+                            )
+                          ) {
+                            await destroyVehicle(vehicle);
+                            await getVehicles();
+                          }
+                        }}
                       >
                         X
                       </button>
