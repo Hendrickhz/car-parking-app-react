@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import ValidationError from "../../components/ValidationError";
+import IconSpinner from "../../components/IconSpinner";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
 
-  const {register,errors}= useAuth()
-  const handleSubmit = async(event) => {
+  const { register, errors, isLoading } = useAuth();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = { name, email, password, password_confirmation };
 
-    await register(data)
+    await register(data);
     console.log(data);
-    setPassword('')
-    setPasswordConfirmation('')
+    setPassword("");
+    setPasswordConfirmation("");
   };
 
   return (
@@ -35,8 +36,9 @@ const Register = () => {
             onChange={(event) => setName(event.target.value)}
             className="form-input"
             autoComplete="name"
+            disabled={isLoading}
           />
-          <ValidationError errors={errors} field="name"/>
+          <ValidationError errors={errors} field="name" />
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -51,7 +53,9 @@ const Register = () => {
             onChange={(event) => setEmail(event.target.value)}
             className="form-input"
             autoComplete="email"
-          />  <ValidationError errors={errors} field="email"/>
+            disabled={isLoading}
+          />{" "}
+          <ValidationError errors={errors} field="email" />
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -66,8 +70,9 @@ const Register = () => {
             onChange={(event) => setPassword(event.target.value)}
             className="form-input"
             autoComplete="new-password"
+            disabled={isLoading}
           />
-            <ValidationError errors={errors} field="password"/>
+          <ValidationError errors={errors} field="password" />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -82,15 +87,19 @@ const Register = () => {
             onChange={(event) => setPasswordConfirmation(event.target.value)}
             className="form-input"
             autoComplete="new-password"
+            disabled={isLoading}
           />
-
         </div>
 
         <div className="border-t h-[1px] my-6"></div>
 
         <div className="flex flex-col gap-2 mb-4">
-          <button type="submit" className="btn btn-primary">
-            Register
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="btn btn-primary"
+          >
+            {isLoading && <IconSpinner />} Register
           </button>
         </div>
       </div>
