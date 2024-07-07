@@ -19,6 +19,7 @@ export const useAuth = () => {
     }
   }, [accessToken]);
 
+  //register user
   async function register(data) {
     setErrors({});
     setIsLoading(true);
@@ -36,6 +37,28 @@ export const useAuth = () => {
       setIsLoading(false);
     }
   }
+
+  //login user
+  async function login(data) {
+    setErrors({});
+    setIsLoading(true);
+
+    try {
+      const res = await axios.post("/auth/login", data);
+      if (res.status < 300) {
+        setAccessToken(res.data.access_token);
+        navigate(route("parkings.active"));
+      }
+    } catch (error) {
+      if (error.response.status === 422) {
+        setErrors(error.response.data.errors);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  //logout user
   async function logout(force = false) {
     if (!force) {
       await axios.post("auth/logout");
@@ -43,5 +66,5 @@ export const useAuth = () => {
     removeAccessToken();
     navigate("login");
   }
-  return { register, errors, isLoading, isLoggedIn, logout };
+  return { register,login, errors, isLoading, isLoggedIn, logout };
 };
