@@ -1,16 +1,24 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { route } from "../routes";
+import { useState } from "react";
 
 export const useAuth = () => {
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   async function register(data) {
-    const res = await axios.post("/auth/register", data);
-    if (res.status < 300) {
-      return navigate(route("vehicles.index"));
+    setErrors({});
+    try {
+      const res = await axios.post("/auth/register", data);
+      if (res.status < 300) {
+        return navigate(route("vehicles.index"));
+      }
+    } catch (error) {
+      if (error.response.status == 422) {
+        setErrors(error.response.data.errors);
+      }
     }
   }
-  return { register };
+  return { register, errors };
 };
-

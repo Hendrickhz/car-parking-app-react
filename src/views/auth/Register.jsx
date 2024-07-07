@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import ValidationError from "../../components/ValidationError";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
 
-  const {register}= useAuth()
+  const {register,errors}= useAuth()
   const handleSubmit = async(event) => {
     event.preventDefault();
     const data = { name, email, password, password_confirmation };
@@ -35,6 +36,7 @@ const Register = () => {
             className="form-input"
             autoComplete="name"
           />
+          <ValidationError errors={errors} field="name"/>
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -49,7 +51,7 @@ const Register = () => {
             onChange={(event) => setEmail(event.target.value)}
             className="form-input"
             autoComplete="email"
-          />
+          />  <ValidationError errors={errors} field="email"/>
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -65,6 +67,7 @@ const Register = () => {
             className="form-input"
             autoComplete="new-password"
           />
+            <ValidationError errors={errors} field="password"/>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -80,6 +83,7 @@ const Register = () => {
             className="form-input"
             autoComplete="new-password"
           />
+
         </div>
 
         <div className="border-t h-[1px] my-6"></div>
