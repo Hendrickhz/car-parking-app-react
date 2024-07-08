@@ -14,6 +14,7 @@ import EditProfile from "./views/profile/EditProfile";
 import ChangePassword from "./views/profile/ChangePassword";
 import CreateVehicle from "./views/vehicles/CreateVehicle";
 import EditVehicle from "./views/vehicles/EditVehicle";
+import OrderParking from "./views/parkings/OrderParking";
 window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             element={<ChangePassword />}
           />
           <Route path={route("parkings.active")} element={<ActiveParkings />} />
+          <Route path={route("parkings.create")} element={<OrderParking />} />
         </Route>
       </Routes>
     </BrowserRouter>
