@@ -15,6 +15,8 @@ import ChangePassword from "./views/profile/ChangePassword";
 import CreateVehicle from "./views/vehicles/CreateVehicle";
 import EditVehicle from "./views/vehicles/EditVehicle";
 import OrderParking from "./views/parkings/OrderParking";
+import ParkingHistory from "./views/parkings/ParkingHistory";
+import ParkingDetails from "./views/parkings/ParkingDetails";
 window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
@@ -38,6 +40,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           />
           <Route path={route("parkings.active")} element={<ActiveParkings />} />
           <Route path={route("parkings.create")} element={<OrderParking />} />
+          <Route path={route("parkings.history")} element={<ParkingHistory />} />
+          <Route path={route("parkings.show")} element={<ParkingDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
